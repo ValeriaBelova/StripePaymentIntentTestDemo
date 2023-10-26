@@ -103,14 +103,13 @@ public class PaymentController {
                 System.out.println("META DATA!!!!!!!!!!!\n\n" +
                         paymentIntent.getMetadata().toString());
 
+                saveToDB(paymentIntent.getId(), paymentIntent.getAmount(),
+                        paymentIntent.getMetadata().get("provider_id"),
+                        paymentIntent.getMetadata().get("order_id"));
              /*   JSONObject jsonObj = new JSONObject();
 
                 //save to db -> use a method toJsonString() and send to Order API
                 //to db saving ENDPOINT
-                saveToDB(paymentIntent.getId(), paymentIntent.getAmount(),
-                        paymentIntent.getMetadata().get("provider_id"),
-                        paymentIntent.getMetadata().get("order_id"),
-                        paymentIntent.getCreated());
 
                 jsonObj.put("id", paymentIntent.getId().toString());
                 jsonObj.put("amount", paymentIntent.getAmount().toString());
@@ -146,9 +145,9 @@ public class PaymentController {
     }
 
     //todo actual save
-    private void saveToDB(String id, Long amount, String provider_id, String order_id, Long created) {
+    private void saveToDB(String id, Long amount, String provider_id, String order_id) {
         System.out.println("simulation save to db:\nid " + id + " amount" + amount +
-                " provider_id " + provider_id + " order_id " + order_id + " created " + created);
-        //also the date, is 'created' enough?
+                " provider_id " + provider_id + " order_id " + order_id);
+        //also the date
     }
 }
